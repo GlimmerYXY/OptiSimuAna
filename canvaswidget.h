@@ -1,53 +1,23 @@
-#ifndef CANVASWIDGET_H
-#define CANVASWIDGET_H
+#ifndef DRAGWIDGET_H
+#define DRAGWIDGET_H
 
-#include <QPoint>
-#include <QPixmap>
-#include <QVector>
-#include <QWidget>
+#include <QFrame>
 
 QT_BEGIN_NAMESPACE
 class QDragEnterEvent;
 class QDropEvent;
-class QMouseEvent;
 QT_END_NAMESPACE
 
-class CanvasWidget : public QWidget
+class CanvasWidget : public QFrame
 {
-    Q_OBJECT
-
 public:
-    explicit CanvasWidget(int imageSize, QWidget *parent = nullptr);
-    void clear();
-
-    int pieceSize() const;
-    int imageSize() const;
-
-signals:
-    void puzzleCompleted();
+    explicit CanvasWidget(QWidget *parent = nullptr);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event) override;
-    void dragLeaveEvent(QDragLeaveEvent *event) override;
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
-    void paintEvent(QPaintEvent *event) override;
-
-private:
-    struct Piece {
-        QPixmap pixmap;
-        QRect rect;
-        QPoint location;
-    };
-
-    int findPiece(const QRect &pieceRect) const;
-    const QRect targetSquare(const QPoint &position) const;
-
-    QVector<Piece> pieces;
-    QRect highlightedRect;
-    int inPlace;
-    int m_ImageSize;
 };
 
-#endif // CANVASWIDGET_H
+#endif // DRAGWIDGET_H

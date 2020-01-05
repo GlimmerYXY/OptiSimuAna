@@ -27,15 +27,15 @@ CONFIG += c++11
 SOURCES += \
         canvaswidget.cpp \
         devicelist.cpp \
-        dragwidget.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        puzzlewidget.cpp
 
 HEADERS += \
         canvaswidget.h \
         devicelist.h \
-        dragwidget.h \
-        mainwindow.h
+        mainwindow.h \
+        puzzlewidget.h
 
 FORMS += \
         mainwindow.ui

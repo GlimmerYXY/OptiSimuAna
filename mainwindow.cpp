@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dockProject->setGeometry(0, 46, 200, 330);
     ui->dockLibrary->setGeometry(0, 377, 200, 330);
 
-    canvasWidget = new CanvasWidget(400);
+    canvasWidget = new CanvasWidget;
     ui->tabCanvas->insertTab(0, canvasWidget, "画布");
     ui->tabCanvas->setCurrentIndex(0);
 
@@ -124,7 +124,11 @@ void MainWindow::on_acNew_triggered()
 
     QString str("画布" + QString::number(count+1));
     //QLabel *label = new QLabel(str);
-    CanvasWidget * testWidget = new CanvasWidget(400);
+    CanvasWidget * testWidget = new CanvasWidget;
+
+    canvasWidget = new CanvasWidget;
+    ui->tabCanvas->insertTab(0, canvasWidget, "画布");
+    ui->tabCanvas->setCurrentIndex(0);
 
     ui->tabCanvas->insertTab(0, testWidget, str);
     ui->tabCanvas->setCurrentIndex(0);
@@ -177,7 +181,7 @@ void MainWindow::setupPuzzle()
 
     for (int y = 0; y < 5; ++y) {
         for (int x = 0; x < 5; ++x) {
-            int pieceSize = canvasWidget->pieceSize();
+            int pieceSize = 400 / 5;
             QPixmap pieceImage = puzzleImage.copy(x * pieceSize, y * pieceSize, pieceSize, pieceSize);
             deviceList->addDevice(pieceImage, QPoint(x, y));
         }
@@ -190,5 +194,5 @@ void MainWindow::setupPuzzle()
         }
     }
 
-    canvasWidget->clear();
+    canvasWidget->update();
 }

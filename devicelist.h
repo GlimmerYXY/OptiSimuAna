@@ -14,10 +14,10 @@ public:
     static QString libMimeType() { return QStringLiteral("image/x-lib-device"); }
 
 protected:
+    void startDrag(Qt::DropActions supportedActions) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
-    void startDrag(Qt::DropActions supportedActions) override;
 
     int m_DeviceSize;
 };
